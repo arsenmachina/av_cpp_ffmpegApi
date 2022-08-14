@@ -1,1 +1,1 @@
-/usr/bin/c++ -L/usr/lib/x86_64-linux-gnu -lavcodec -lavformat -lavfilter -lavdevice -lavutil -lswresample -lswscale CMakeFiles/video-app.dir/src/main.cpp.o -o video-app  lib/glfw/src/libglfw3.a /usr/lib/x86_64-linux-gnu/librt.a -lm -ldl 
+/usr/bin/c++ CMakeFiles/video-app.dir/src/main.cpp.o -o video-app  lib/glfw/src/libglfw3.a -L/usr/lib/x86_64-linux-gnu -lavcodec -lavformat -lavfilter -lavdevice -lavutil -lswresample -lswscale /usr/lib/x86_64-linux-gnu/librt.a -lm -ldl 

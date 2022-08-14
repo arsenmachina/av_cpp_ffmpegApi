@@ -1,0 +1,12 @@
+version: '3.6'
+
+
+services:
+  ff_dev:
+    container_name: ff_dev
+    build:
+      dockerfile: Dockerfile
+    
+    volumes:
+      - "../../c++:/home/dev/ffmpeg"
+    

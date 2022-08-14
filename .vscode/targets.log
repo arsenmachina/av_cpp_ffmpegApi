@@ -8,7 +8,7 @@ make: *** No rule to make target 'all'.  Stop.
 # This is free software: you are free to change and redistribute it.
 # There is NO WARRANTY, to the extent permitted by law.
 
-# Make data base, printed on Sat Aug 13 10:00:50 2022
+# Make data base, printed on Sun Aug 14 10:41:18 2022
 
 # Variables
 
@@ -67,7 +67,7 @@ PAM_KWALLET5_LOGIN = /run/user/1000/kwallet5.socket
 # environment
 MFLAGS = -pqrR
 # environment
-SSH_AUTH_SOCK = /tmp/ssh-XXXXXXU0cvAk/agent.2786
+SSH_AUTH_SOCK = /tmp/ssh-XXXXXXdCddkh/agent.2758
 # default
 .SHELLFLAGS := -c
 # environment
@@ -83,13 +83,13 @@ MAKEFILE_LIST :=
 # automatic
 @F = $(notdir $@)
 # environment
-VSCODE_PID = 21669
+VSCODE_PID = 8169
 # environment
 XDG_SESSION_TYPE = x11
 # automatic
 ?D = $(patsubst %/,%,$(dir $?))
 # environment
-SESSION_MANAGER = local/server:@/tmp/.ICE-unix/2943,unix/server:/tmp/.ICE-unix/2943
+SESSION_MANAGER = local/server:@/tmp/.ICE-unix/2917,unix/server:/tmp/.ICE-unix/2917
 # automatic
 *F = $(notdir $*)
 # environment
@@ -149,7 +149,7 @@ XDG_VTNR = 1
 # makefile
 .DEFAULT_GOAL := 
 # environment
-SYSTEMD_EXEC_PID = 2769
+SYSTEMD_EXEC_PID = 2741
 # environment
 DISPLAY = :0
 # environment
@@ -159,7 +159,7 @@ MAKE_VERSION := 4.3
 # environment
 KDE_SESSION_UID = 1000
 # environment
-SSH_AGENT_PID = 2828
+SSH_AGENT_PID = 2800
 # environment
 _ = /usr/share/code/code
 # environment
@@ -205,9 +205,9 @@ KDE_FULL_SESSION = true
 
 # Directories
 
-# . (device 64768, inode 5646443): 7 files, no impossibilities.
+# . (device 64768, inode 5646443): 10 files, no impossibilities.
 
-# 7 files, no impossibilities in 1 directories.
+# 10 files, no impossibilities in 1 directories.
 
 # Implicit Rules
 
@@ -257,12 +257,12 @@ GNUmakefile:
 
 # No general ('VPATH' variable) search path.
 
-# strcache buffers: 1 (0) / strings = 15 / storage = 127 B / avg = 8 B
-# current buf: size = 8162 B / used = 127 B / count = 15 / avg = 8 B
+# strcache buffers: 1 (0) / strings = 18 / storage = 150 B / avg = 8 B
+# current buf: size = 8162 B / used = 150 B / count = 18 / avg = 8 B
 
-# strcache performance: lookups = 18 / hit rate = 16%
+# strcache performance: lookups = 21 / hit rate = 14%
 # hash-table stats:
-# Load=15/8192=0%, Rehash=0, Collisions=0/18=0%
-# Finished Make data base on Sat Aug 13 10:00:50 2022
+# Load=18/8192=0%, Rehash=0, Collisions=0/21=0%
+# Finished Make data base on Sun Aug 14 10:41:18 2022
 
  

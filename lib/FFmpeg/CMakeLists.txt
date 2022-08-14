@@ -26,7 +26,7 @@ project(FFmpeg)
  )
 
 
- target_link_options(FFmpeg INTERFACE
+ target_link_libraries(FFmpeg INTERFACE
  
  ${AVCODEC_LDFLAGS}
  ${AVFORMAT_LDFLAGS}
