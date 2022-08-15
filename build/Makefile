@@ -85,51 +85,6 @@ rebuild_cache:
 rebuild_cache/fast: rebuild_cache
 .PHONY : rebuild_cache/fast
 
-# Special rule for the target list_install_components
-list_install_components:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Available install components are: \"Unspecified\""
-.PHONY : list_install_components
-
-# Special rule for the target list_install_components
-list_install_components/fast: list_install_components
-.PHONY : list_install_components/fast
-
-# Special rule for the target install
-install: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install
-
-# Special rule for the target install
-install/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Install the project..."
-	/usr/bin/cmake -P cmake_install.cmake
-.PHONY : install/fast
-
-# Special rule for the target install/local
-install/local: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local
-
-# Special rule for the target install/local
-install/local/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing only the local directory..."
-	/usr/bin/cmake -DCMAKE_INSTALL_LOCAL_ONLY=1 -P cmake_install.cmake
-.PHONY : install/local/fast
-
-# Special rule for the target install/strip
-install/strip: preinstall
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip
-
-# Special rule for the target install/strip
-install/strip/fast: preinstall/fast
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Installing the project stripped..."
-	/usr/bin/cmake -DCMAKE_INSTALL_DO_STRIP=1 -P cmake_install.cmake
-.PHONY : install/strip/fast
-
 # The main all target
 all: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/server/Desktop/c++/build/CMakeFiles /home/server/Desktop/c++/build//CMakeFiles/progress.marks
@@ -162,63 +117,48 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named video-app
+# Target rules for targets named ff_ms
 
 # Build rule for target.
-video-app: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 video-app
-.PHONY : video-app
+ff_ms: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ff_ms
+.PHONY : ff_ms
 
 # fast build rule for target.
-video-app/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/video-app.dir/build.make CMakeFiles/video-app.dir/build
-.PHONY : video-app/fast
+ff_ms/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ff_ms.dir/build.make CMakeFiles/ff_ms.dir/build
+.PHONY : ff_ms/fast
 
-#=============================================================================
-# Target rules for targets named uninstall
+src/check_input_parameters.o: src/check_input_parameters.cpp.o
+.PHONY : src/check_input_parameters.o
 
-# Build rule for target.
-uninstall: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 uninstall
-.PHONY : uninstall
+# target to build an object file
+src/check_input_parameters.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ff_ms.dir/build.make CMakeFiles/ff_ms.dir/src/check_input_parameters.cpp.o
+.PHONY : src/check_input_parameters.cpp.o
 
-# fast build rule for target.
-uninstall/fast:
-	$(MAKE) $(MAKESILENT) -f lib/glfw/CMakeFiles/uninstall.dir/build.make lib/glfw/CMakeFiles/uninstall.dir/build
-.PHONY : uninstall/fast
+src/check_input_parameters.i: src/check_input_parameters.cpp.i
+.PHONY : src/check_input_parameters.i
 
-#=============================================================================
-# Target rules for targets named glfw
+# target to preprocess a source file
+src/check_input_parameters.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ff_ms.dir/build.make CMakeFiles/ff_ms.dir/src/check_input_parameters.cpp.i
+.PHONY : src/check_input_parameters.cpp.i
 
-# Build rule for target.
-glfw: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 glfw
-.PHONY : glfw
+src/check_input_parameters.s: src/check_input_parameters.cpp.s
+.PHONY : src/check_input_parameters.s
 
-# fast build rule for target.
-glfw/fast:
-	$(MAKE) $(MAKESILENT) -f lib/glfw/src/CMakeFiles/glfw.dir/build.make lib/glfw/src/CMakeFiles/glfw.dir/build
-.PHONY : glfw/fast
-
-#=============================================================================
-# Target rules for targets named update_mappings
-
-# Build rule for target.
-update_mappings: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 update_mappings
-.PHONY : update_mappings
-
-# fast build rule for target.
-update_mappings/fast:
-	$(MAKE) $(MAKESILENT) -f lib/glfw/src/CMakeFiles/update_mappings.dir/build.make lib/glfw/src/CMakeFiles/update_mappings.dir/build
-.PHONY : update_mappings/fast
+# target to generate assembly for a file
+src/check_input_parameters.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ff_ms.dir/build.make CMakeFiles/ff_ms.dir/src/check_input_parameters.cpp.s
+.PHONY : src/check_input_parameters.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
 
 # target to build an object file
 src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/video-app.dir/build.make CMakeFiles/video-app.dir/src/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ff_ms.dir/build.make CMakeFiles/ff_ms.dir/src/main.cpp.o
 .PHONY : src/main.cpp.o
 
 src/main.i: src/main.cpp.i
@@ -226,7 +166,7 @@ src/main.i: src/main.cpp.i
 
 # target to preprocess a source file
 src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/video-app.dir/build.make CMakeFiles/video-app.dir/src/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ff_ms.dir/build.make CMakeFiles/ff_ms.dir/src/main.cpp.i
 .PHONY : src/main.cpp.i
 
 src/main.s: src/main.cpp.s
@@ -234,7 +174,7 @@ src/main.s: src/main.cpp.s
 
 # target to generate assembly for a file
 src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/video-app.dir/build.make CMakeFiles/video-app.dir/src/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ff_ms.dir/build.make CMakeFiles/ff_ms.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
 # Help Target
@@ -244,15 +184,11 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... edit_cache"
-	@echo "... install"
-	@echo "... install/local"
-	@echo "... install/strip"
-	@echo "... list_install_components"
 	@echo "... rebuild_cache"
-	@echo "... uninstall"
-	@echo "... update_mappings"
-	@echo "... glfw"
-	@echo "... video-app"
+	@echo "... ff_ms"
+	@echo "... src/check_input_parameters.o"
+	@echo "... src/check_input_parameters.i"
+	@echo "... src/check_input_parameters.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"

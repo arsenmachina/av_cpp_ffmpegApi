@@ -196,7 +196,7 @@ CMAKE_PROJECT_DESCRIPTION:STATIC=
 CMAKE_PROJECT_HOMEPAGE_URL:STATIC=
 
 //Value Computed by CMake
-CMAKE_PROJECT_NAME:STATIC=video_app
+CMAKE_PROJECT_NAME:STATIC=FF_MS
 
 //Value Computed by CMake
 CMAKE_PROJECT_VERSION:STATIC=3.4.0
@@ -277,6 +277,15 @@ CMAKE_VERBOSE_MAKEFILE:BOOL=FALSE
 
 //Doxygen documentation generation tool (http://www.doxygen.org)
 DOXYGEN_EXECUTABLE:FILEPATH=DOXYGEN_EXECUTABLE-NOTFOUND
+
+//Value Computed by CMake
+FF_MS_BINARY_DIR:STATIC=/home/server/Desktop/c++/build
+
+//Value Computed by CMake
+FF_MS_IS_TOP_LEVEL:STATIC=ON
+
+//Value Computed by CMake
+FF_MS_SOURCE_DIR:STATIC=/home/server/Desktop/c++
 
 //Value Computed by CMake
 FFmpeg_BINARY_DIR:STATIC=/home/server/Desktop/c++/build/lib/FFmpeg
@@ -917,7 +926,7 @@ CMAKE_MODULE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_NM
 CMAKE_NM-ADVANCED:INTERNAL=1
 //number of local generators
-CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=4
+CMAKE_NUMBER_OF_MAKEFILES:INTERNAL=2
 //ADVANCED property for variable: CMAKE_OBJCOPY
 CMAKE_OBJCOPY-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_OBJDUMP

@@ -145,6 +145,7 @@ CMakeFiles/video-app.dir/src/main.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
+ /home/server/Desktop/c++/src/check_input_parameters.h \
  /usr/include/x86_64-linux-gnu/libavcodec/avcodec.h \
  /usr/include/x86_64-linux-gnu/libavutil/samplefmt.h \
  /usr/include/x86_64-linux-gnu/libavutil/avutil.h \

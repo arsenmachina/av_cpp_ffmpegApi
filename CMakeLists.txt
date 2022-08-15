@@ -1,11 +1,20 @@
 cmake_minimum_required(VERSION 3.13)
-project(video_app C CXX)
+project(FF_MS)
 
-add_subdirectory(lib/glfw)
+
 add_subdirectory(lib/FFmpeg)
 
-add_executable(video-app src/main.cpp)
-target_link_libraries(video-app FFmpeg glfw)
+set(SOURCE src/main.cpp
+src/check_input_parameters.cpp
+
+)
+
+
+
+set(HEADER	src/check_input parameters.h)
+
+add_executable(ff_ms ${SOURCE})
+target_link_libraries(ff_ms FFmpeg)
 	
 
 

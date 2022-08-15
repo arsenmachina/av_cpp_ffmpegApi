@@ -8,12 +8,12 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/home/server/Desktop/c++/src/check_input_parameters.cpp" "CMakeFiles/video-app.dir/src/check_input_parameters.cpp.o" "gcc" "CMakeFiles/video-app.dir/src/check_input_parameters.cpp.o.d"
   "/home/server/Desktop/c++/src/main.cpp" "CMakeFiles/video-app.dir/src/main.cpp.o" "gcc" "CMakeFiles/video-app.dir/src/main.cpp.o.d"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/server/Desktop/c++/build/lib/glfw/src/CMakeFiles/glfw.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.
