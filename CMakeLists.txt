@@ -3,6 +3,7 @@ project(FF_MS)
 
 
 add_subdirectory(lib/FFmpeg)
+add_subdirectory(lib/glfw)
 
 set(SOURCE src/main.cpp
 src/check_input_parameters.cpp
@@ -14,7 +15,7 @@ src/check_input_parameters.cpp
 set(HEADER	src/check_input parameters.h)
 
 add_executable(ff_ms ${SOURCE})
-target_link_libraries(ff_ms FFmpeg)
+target_link_libraries(ff_ms FFmpeg glfw)
 	
 
 
