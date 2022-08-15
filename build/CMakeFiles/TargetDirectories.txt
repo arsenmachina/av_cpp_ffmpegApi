@@ -1,5 +1,0 @@
-/home/server/Desktop/c++/build/CMakeFiles/ff_ms.dir
-/home/server/Desktop/c++/build/CMakeFiles/edit_cache.dir
-/home/server/Desktop/c++/build/CMakeFiles/rebuild_cache.dir
-/home/server/Desktop/c++/build/lib/FFmpeg/CMakeFiles/edit_cache.dir
-/home/server/Desktop/c++/build/lib/FFmpeg/CMakeFiles/rebuild_cache.dir
