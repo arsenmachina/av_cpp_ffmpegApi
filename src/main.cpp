@@ -1,10 +1,11 @@
 #include <iostream>
 #include "check_input_parameters.h"
-#include "save_gray_frame.h"
+
 
 extern "C"{
 #include <libavcodec/avcodec.h>
 #include <libavformat/avformat.h>
+#include "save_gray_frame.h"
 }
 
 
@@ -62,11 +63,12 @@ int main(int argc, char* argv[]){
   
 			if(pPacket->stream_index == video_stream_index){
 					
-					response = avcodec_send_packet(pCodecContext, pPacket);
+					response = avcodec_send_packet(pCodecContext, pPacket);   //разобрать
 					std::cout << response << std::endl;
-					response = avcodec_receive_frame(pCodecContext, pFrame);
+					response = avcodec_receive_frame(pCodecContext, pFrame);   //разобрать если закомментить ломается 
 					std::cout << response << std::endl;
 					//std::cout << "Error while sending a packet to the decoder: %s" <<  av_err2str(response);
+					
 			}
 	}
 

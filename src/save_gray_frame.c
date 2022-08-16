@@ -1,9 +1,9 @@
-#include<iostream>
+#include <stdio.h>
 
 
 
 
-static void save_gray_frame(unsigned char *buf, int wrap, int xsize, int ysize, char *filename)
+ void save_gray_frame(unsigned char *buf, int wrap, int xsize, int ysize, char *filename)
 {
     FILE *f;
     int i;
