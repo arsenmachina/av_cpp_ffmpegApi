@@ -21,29 +21,35 @@ int main(int argc, char* argv[]){
 	
 	AVFormatContext *pFormatContext = avformat_alloc_context(); //Allocate memory for context 
 	
+	
+
 	avformat_open_input(&pFormatContext, argv[argc-1], NULL, NULL); //Open file and fill context pFormatContext
 	
+	
+
+	
+
 	avformat_find_stream_info(pFormatContext,  NULL); // Read streams from disk
 
+			//Find VIDEO_STREAM
+		
 	for(int i = 0; i < pFormatContext->nb_streams; i++){
 
-		AVCodecParameters *pLocalCodecParameters = pFormatContext->streams[i]->codecpar; // For every stream get information
+		pCodecParameters = pFormatContext->streams[i]->codecpar; // For every stream get information
 		
-		AVCodec *pLocalCodec = avcodec_find_decoder(pLocalCodecParameters->codec_id);		//std::cout << pLocalCodecParameters->bit_rate << std::endl;
+		pCodec = avcodec_find_decoder(pCodecParameters->codec_id);		//std::cout << pLocalCodecParameters->bit_rate << std::endl;
 		
-			if(pLocalCodecParameters->codec_type == AVMEDIA_TYPE_VIDEO){
-				 if (video_stream_index == -1){
+			if(pCodecParameters->codec_type == AVMEDIA_TYPE_VIDEO){
+				 if (video_stream_index == -1)
 					video_stream_index = i;
-					pCodec = pLocalCodec;
-					pCodecParameters = pLocalCodecParameters;
-				 }
+					break;
 			}
 																						
-		                       
+		                     		 
 	}
 		
 		if (video_stream_index == -1) {
-    		std::cout << "File %s does not contain a video stream!" << argv[1] << std::endl;
+    		std::cout << "File " << argv[1] << " does not contain a video stream!" << std::endl;
     		return -1;
 	    } 
 
@@ -54,13 +60,17 @@ int main(int argc, char* argv[]){
 	avcodec_open2(pCodecContext, pCodec, NULL); //Open codec 
 	
 	
-	////Read packeg from stream and write frame 
+	////Read packet from stream and write frame 
 
 	AVPacket *pPacket = av_packet_alloc();
 	AVFrame *pFrame = av_frame_alloc();  		//allocate memory from components
 
+	
+	
 	while(av_read_frame(pFormatContext, pPacket) >= 0) {
-  
+
+		
+		
 			if(pPacket->stream_index == video_stream_index){
 					
 					response = avcodec_send_packet(pCodecContext, pPacket);   //разобрать
@@ -70,7 +80,7 @@ int main(int argc, char* argv[]){
 					//std::cout << "Error while sending a packet to the decoder: %s" <<  av_err2str(response);
 					
 			}
-	}
+	} 
 
 	save_gray_frame(pFrame->data[0], pFrame->linesize[0], pFrame->width, pFrame->height, "./out");
 

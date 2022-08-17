@@ -3,7 +3,6 @@ project(FF_MS)
 
 
 add_subdirectory(lib/FFmpeg)
-add_subdirectory(lib/glfw)
 
 set(SOURCE
  
@@ -18,7 +17,7 @@ src/save_gray_frame.c
 
 
 add_executable(ff_ms ${SOURCE})
-target_link_libraries(ff_ms FFmpeg glfw)
+target_link_libraries(ff_ms FFmpeg )
 
 
 
