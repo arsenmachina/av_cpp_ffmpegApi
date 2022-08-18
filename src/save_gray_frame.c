@@ -3,7 +3,7 @@
 
 
 
- void save_gray_frame(unsigned char *buf, int wrap, int xsize, int ysize, char *filename)
+ void save_gray_frame(unsigned char *buf, int wrap, int xsize, int ysize, const char *filename)
 {
     FILE *f;
     int i;

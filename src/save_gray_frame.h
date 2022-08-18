@@ -1,7 +1,7 @@
 #ifndef _SAVE_GRAY_FRAME_
 #define _SAVE_GRAY_FRAME_
 
-void save_gray_frame(unsigned char *buf, int wrap, int xsize, int ysize, char *filename);
+void save_gray_frame(unsigned char *buf, int wrap, int xsize, int ysize,const char *filename);
 
 #endif
 

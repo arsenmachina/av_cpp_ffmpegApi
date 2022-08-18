@@ -9,6 +9,7 @@ set(SOURCE
 src/main.cpp
 src/check_input_parameters.cpp
 src/save_gray_frame.c
+src/info_video_stream.cpp
 
 )
 
