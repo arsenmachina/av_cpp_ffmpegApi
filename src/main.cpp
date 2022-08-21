@@ -55,7 +55,7 @@ int main(int argc, char* argv[]){
 	    } 
 		AVRational  frame_r = pFormatContext->streams[video_stream_index]->r_frame_rate;     
 			double frame_rate = get_frame_rate(frame_r.num, pFormatContext->duration);
-			std::cout << frame_rate << std::endl;
+			
 			
 	
 	AVCodecContext *pCodecContext = avcodec_alloc_context3(pCodec); //Alloc memory for context proccess decode/code
@@ -69,11 +69,12 @@ int main(int argc, char* argv[]){
 	AVPacket *pPacket = av_packet_alloc();
 	AVFrame *pFrame = av_frame_alloc();  		//allocate memory from components
 
-
 	
-	while(av_read_frame(pFormatContext, pPacket) >= 0) {
 
 		
+	while(av_read_frame(pFormatContext, pPacket) >= 0) {
+
+
 		
 			if(pPacket->stream_index == video_stream_index){
 					
@@ -85,9 +86,8 @@ int main(int argc, char* argv[]){
 							response = avcodec_receive_frame(pCodecContext, pFrame);   //разобрать если закомментить ломается 
 							system("clear");
 							std::cout << "Decoding progress: " << int((pCodecContext->frame_number * 100) / frame_rate) << "%" << std::endl;
-							
+							get_info_v_stream(av_get_picture_type_char(pFrame->pict_type) , pCodecContext->frame_number , pFrame->pts , pFrame->pkt_dts , pFrame->coded_picture_number , pFrame->coded_picture_number , pFrame->display_picture_number );
 						}	
-						
 			}
 	} 
 
@@ -98,6 +98,7 @@ int main(int argc, char* argv[]){
 		std::cout << "Eror decode file!" << std::endl;
 		return response;
 	}
+	
 
 	save_gray_frame(pFrame->data[0], pFrame->linesize[0], pFrame->width, pFrame->height, out_save_file);
 
