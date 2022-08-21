@@ -86,11 +86,14 @@ int main(int argc, char* argv[]){
 							response = avcodec_receive_frame(pCodecContext, pFrame);   //разобрать если закомментить ломается 
 							system("clear");
 							std::cout << "Decoding progress: " << int((pCodecContext->frame_number * 100) / frame_rate) << "%" << std::endl;
+							
+							
 							get_info_v_stream(av_get_picture_type_char(pFrame->pict_type) , pCodecContext->frame_number , pFrame->pts , pFrame->pkt_dts , pFrame->coded_picture_number , pFrame->coded_picture_number , pFrame->display_picture_number );
+							
 						}	
 			}
 	} 
-
+	ffff
 	if(response == 0){
 		system("clear");
 		std::cout << "100% Finish decode!" << std::endl;
