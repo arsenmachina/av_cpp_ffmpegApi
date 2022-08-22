@@ -17,93 +17,112 @@ int main(int argc, char* argv[]){
 	AVCodec *pCodec = NULL;
 	AVCodecParameters *pCodecParameters =  NULL;
 	int video_stream_index = -1, response = 0;
-	const char* out_save_file = "out";
+	const char* out_filename = "out/arsen_machina.m3u8";
+	int *streams_list;
+	int stream_index = 0;
+	AVPacket packet;
+	
 	
 
 	if (!check_input_parametrs(argc))
 		return false;
 	
-	AVFormatContext *pFormatContext = avformat_alloc_context(); //Allocate memory for context  Abstract format file 
 	
-	
+	AVFormatContext *input_format_context = NULL;    //Create Format context
+	AVFormatContext *output_format_context = NULL;
 
-	avformat_open_input(&pFormatContext, argv[argc-1], NULL, NULL); //Open file and fill context pFormatContext
-	
-	
+			if ((avformat_open_input(&input_format_context, argv[argc-1], NULL, NULL)) < 0) {
+					std::cout << "Could not open! " << argv[argc-1] << std::endl;
+					return -1;
+				}
+		if ((avformat_find_stream_info(input_format_context, NULL)) < 0) {
+				std::cout << "Not found any streams! " << std::endl;
+				return -1;
+				}
 
-	avformat_find_stream_info(pFormatContext,  NULL); // Read streams from disk
-
-			//Find VIDEO_STREAM
 		
-	for(int i = 0; i < pFormatContext->nb_streams; i++){
+		if (avformat_alloc_output_context2(&output_format_context, NULL, NULL, out_filename) < 0) {
+			std::cout << "Could not create out_format_context!";
+			return -1;
+				}
 
-		pCodecParameters = pFormatContext->streams[i]->codecpar; // For every stream get information
-		
-		pCodec = avcodec_find_decoder(pCodecParameters->codec_id);		//std::cout << pLocalCodecParameters->bit_rate << std::endl;
-		
-			if(pCodecParameters->codec_type == AVMEDIA_TYPE_VIDEO){
-				 if (video_stream_index == -1)
-					video_stream_index = i;
-					break;
+		int number_of_streams =  input_format_context->nb_streams;
+		streams_list = (int*)av_mallocz_array(number_of_streams, sizeof(*streams_list));  //Приведение с++ int* разобрать
+			
+
+
+
+			for (int i = 0; i < input_format_context->nb_streams; i++) {
+			AVStream *out_stream;
+			AVStream *in_stream = input_format_context->streams[i];
+			AVCodecParameters *in_codecpar = in_stream->codecpar;
+			if (in_codecpar->codec_type != AVMEDIA_TYPE_AUDIO &&
+				in_codecpar->codec_type != AVMEDIA_TYPE_VIDEO &&
+				in_codecpar->codec_type != AVMEDIA_TYPE_SUBTITLE) {
+				streams_list[i] = -1;
+				continue;
 			}
-						
-	}
-		
-		if (video_stream_index == -1) {
-    		std::cout << "File " << argv[1] << " does not contain a video stream!" << std::endl;
-    		return -1;
-	    } 
-		AVRational  frame_r = pFormatContext->streams[video_stream_index]->r_frame_rate;     
-			double frame_rate = get_frame_rate(frame_r.num, pFormatContext->duration);
+			streams_list[i] = stream_index++;
+			out_stream = avformat_new_stream(output_format_context, NULL);
+			if (!out_stream) {
+				std::cout << "Failed allocating output stream\n";
+				continue;
+				
+			}
+			
+			if (avcodec_parameters_copy(out_stream->codecpar, in_codecpar) < 0) {
+				std::cout <<  "Failed to copy codec parameters\n";
+				continue;
+			}
+			}
+
+			if (!(output_format_context->oformat->flags & AVFMT_NOFILE)) {
+			
+			if (avio_open(&output_format_context->pb, out_filename, AVIO_FLAG_WRITE) < 0) {
+				std::cout <<  "Could not open output file " <<  out_filename ;
+				return -1;
+			}
+			}
+
+			
+			if (avformat_write_header(output_format_context, NULL) < 0) {
+			std::cout <<  "Error occurred when opening output file\n";
+			
+			}
+	
+			while (1) {
+			AVStream *in_stream, *out_stream;
+			
+			if (av_read_frame(input_format_context, &packet) < 0)
+				break;
+			in_stream  = input_format_context->streams[packet.stream_index];
+			if (packet.stream_index >= number_of_streams || streams_list[packet.stream_index] < 0) {
+				av_packet_unref(&packet);
+				continue;
+			}
+			packet.stream_index = streams_list[packet.stream_index];
+			out_stream = output_format_context->streams[packet.stream_index];
+			/* copy packet */
+			packet.pts = av_rescale_q_rnd(packet.pts, in_stream->time_base, out_stream->time_base, static_cast<AVRounding>(AV_ROUND_NEAR_INF | AV_ROUND_PASS_MINMAX));
+			packet.dts = av_rescale_q_rnd(packet.dts, in_stream->time_base, out_stream->time_base, static_cast<AVRounding>(AV_ROUND_NEAR_INF | AV_ROUND_PASS_MINMAX));
+			packet.duration = av_rescale_q(packet.duration, in_stream->time_base, out_stream->time_base);
+			
+			packet.pos = -1;
+
 			
 			
-	
-	AVCodecContext *pCodecContext = avcodec_alloc_context3(pCodec); //Alloc memory for context proccess decode/code
-	avcodec_parameters_to_context(pCodecContext, pCodecParameters); //Fill context pCodecContext with parametrs pCodecParametrs
-	
-	avcodec_open2(pCodecContext, pCodec, NULL); //Open codec 
-	
-	
-	////Read packet from stream and write frame 
-
-	AVPacket *pPacket = av_packet_alloc();
-	AVFrame *pFrame = av_frame_alloc();  		//allocate memory from components
-
-	
-
-		
-	while(av_read_frame(pFormatContext, pPacket) >= 0) {
-
-
-		
-			if(pPacket->stream_index == video_stream_index){
-					
-					response = avcodec_send_packet(pCodecContext, pPacket);   //разобрать
-						if(response < 0){
-							std::cout << "Can not send encoded packet" << response << std::endl; continue; 
-						}
-						else{
-							response = avcodec_receive_frame(pCodecContext, pFrame);   //разобрать если закомментить ломается 
-							system("clear");
-							std::cout << "Decoding progress: " << int((pCodecContext->frame_number * 100) / frame_rate) << "%" << std::endl;
-							
-							
-							get_info_v_stream(av_get_picture_type_char(pFrame->pict_type) , pCodecContext->frame_number , pFrame->pts , pFrame->pkt_dts , pFrame->coded_picture_number , pFrame->coded_picture_number , pFrame->display_picture_number );
-							
-						}	
+			if (av_interleaved_write_frame(output_format_context, &packet) < 0) {
+				std::cout <<  "Finish muxing packet\n";
+				break;
 			}
-	} 
-	ffff
-	if(response == 0){
-		system("clear");
-		std::cout << "100% Finish decode!" << std::endl;
-	} else {
-		std::cout << "Eror decode file!" << std::endl;
-		return response;
-	}
-	
+			
+			av_packet_unref(&packet);
+			}
+			
+		av_write_trailer(output_format_context);
 
-	save_gray_frame(pFrame->data[0], pFrame->linesize[0], pFrame->width, pFrame->height, out_save_file);
+
+	
 
 	
 	return 0;
