@@ -22,7 +22,7 @@ int main(int argc, char* argv[]){
 	int stream_index = 0;
 	AVPacket packet;
 
-	
+//	
 
 	if (!check_input_parametrs(argc))
 		return false;
