@@ -21,7 +21,7 @@ int main(int argc, char* argv[]){
 	int *streams_list;
 	int stream_index = 0;
 	AVPacket packet;
-	
+
 	
 
 	if (!check_input_parametrs(argc))
@@ -49,7 +49,7 @@ int main(int argc, char* argv[]){
 		int number_of_streams =  input_format_context->nb_streams;
 		streams_list = (int*)av_mallocz_array(number_of_streams, sizeof(*streams_list));  //Приведение с++ int* разобрать
 			
-
+//
 
 
 			for (int i = 0; i < input_format_context->nb_streams; i++) {

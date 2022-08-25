@@ -13,10 +13,6 @@ src/info_video_stream.cpp
 
 )
 
-
-
-
-
 add_executable(ff_ms ${SOURCE})
 target_link_libraries(ff_ms FFmpeg )
 
