@@ -1,7 +1,8 @@
 #include <iostream>
 #include "check_input_parameters.h"
 #include "info_video_stream.h"
-
+#include <sys/stat.h>
+#include <sys/types.h>
 
 
 extern "C"{
@@ -17,10 +18,12 @@ int main(int argc, char* argv[]){
 	AVCodec *pCodec = NULL;
 	AVCodecParameters *pCodecParameters =  NULL;
 	int video_stream_index = -1, response = 0;
-	const char* out_filename = "out/arsen_machina.m3u8";
+	const char* out_filename = "out/arsen_machina.m3u8"; 
+	const char* dir_name = "out"; 
 	int *streams_list;
 	int stream_index = 0;
 	AVPacket packet;
+	
 
 //	
 
@@ -51,7 +54,7 @@ int main(int argc, char* argv[]){
 			
 //
 
-
+			mkdir(dir_name, 0777);
 			for (int i = 0; i < input_format_context->nb_streams; i++) {
 			AVStream *out_stream;
 			AVStream *in_stream = input_format_context->streams[i];

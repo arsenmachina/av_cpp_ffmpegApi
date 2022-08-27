@@ -1,6 +1,8 @@
-Build docker container   -    ( docker build . -t ffmpeg_local )
+Build docker container   -    ( docker build . -t ffmpeg_local ) 
 Run make 
 
+
+1) make install 
 
 
 For IDE
